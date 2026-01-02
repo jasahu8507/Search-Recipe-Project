@@ -1,0 +1,36 @@
+.recipeApp
+{
+    min-height: 100vh;
+    background-image: url(/sfsites/c/resource/recipebackgroud);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.logo
+{
+    margin: auto;
+    padding-top: 20px;
+    max-width:  250px;
+    min-height: 150px;
+    display: block;
+}
+.custom-button
+{
+    background:#000;
+    font-size: 16px;
+    padding: 12px;
+    border-color: #000;
+    color: white;
+    margin-top: 20px;
+}
+.WelcomeContent
+{
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 50px;
+
+}
+.exploreCotent
+{
+    font-size: 20px;
+    font-weight: 600;
+}

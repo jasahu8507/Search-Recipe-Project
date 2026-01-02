@@ -1,0 +1,84 @@
+<template>
+    <div class="recipeApp">
+        <!-- icon to get back into the main page -->
+        <template if:true={exploreRecipe}>
+            <lightning-icon icon-name='action:back' alternative-text='back' title='Back'
+                onclick={handleBack}>></lightning-icon>
+        </template>
+        <!-- logo -->
+        <div>
+            <img src={recipesearchLogo} alt="recepi-finder" class="logo">
+        </div>
+        <!-- main Page -->
+        <template if:false={exploreRecipe}>
+            <div class="slds-text-align_center">
+                <p class="WelcomeContent">
+                    {WelcomeContent}
+                </p>
+                <div class="exploreCotent">
+                    <p>
+                        {exploreContent1}
+                    </p>
+                    <p>
+                        {exploreContent2}
+                    </p>
+                </div>
+                <br>
+                <br>
+            <!-- button to load the search recipe page -->
+            <button class="slds-button slds-button_neutral custom-button" onclick={handleExploreRecipe}> Explore Recipes </button>
+            </div>
+        </template>
+        <!-- search recipe page -->
+        <template if:true={exploreRecipe}>
+            <h1 class="slds-text-align_center slds-var-m-top_large slds-m-var-bottom_large" style="font-size:22px; font-weight:bold ;">Be the Chef:Search Recipe by Ingridients </h1>
+            <div style="padding:0 Irem" class="slds-var-m-top_large">
+                <!-- layput for inpute field and search button -->
+                <div class="slds-align_absolute-center">
+                    <lightning-layout>
+                        <lightning-layout-item size="12" >
+                            <h3>Hint: Enter ingredients comma separated</h3>
+                        <lightning-input name="enter-search" type="search" placeholder="Search Recipe by Ingridients" variant="label-hidden" class="ingridient-input"></lightning-input>
+                        </lightning-layout-item >
+                        <lightning-layout-item padding="horizontal-medium">
+                            <br>
+                            <!-- search recipe button -->
+                            <lightning-button label="Search" onclick={fetchRecipebyIngridients} ></lightning-button>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+                <br>
+                <!-- layout for text and Random recipe search button -->
+                <div class="slds-align_absolute-center">
+                    <lightning-layout>
+                        <lightning-layout-item size="9" >
+                            <h3 style="font-weight: bold; font-size:18px;">Can't decide? Let us surprise you with a randomly selected recipe!</h3>
+                        </lightning-layout-item >
+                        <lightning-layout-item padding="horizontal-small" size="4">
+                            <!-- Explore surprise recipe  button  -->
+                            <lightning-button label="Explore a Surprise Dish" onclick={fetchrandonRecipe} ></lightning-button>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+                <!-- diaplay layout for all the recipe details -->
+                <lightning-layout multiple-rows>
+                    <template for:each={recipes} for:item="recipe">
+                        <lightning-layout-item size="12" key={recipe.id}>
+                            <c-recipe-list-with-instructions
+                                recipe-id={recipe.id}
+                                image={recipe.image}
+                                summary={recipe.summary}
+                                time={recipe.readyInMinutes}
+                                title={recipe.title}
+                                dish-types={recipe.dishTypes}
+                                diets={recipe.diets}
+                                ingredients={ingredients}
+                                analyzed-instructions={recipe.analyzedInstructions}>
+                            </c-recipe-list-with-instructions>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div> 
+        </template>
+    </div>
+</template>
